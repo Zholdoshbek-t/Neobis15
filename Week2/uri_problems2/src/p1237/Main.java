@@ -5,10 +5,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        while (scan.hasNext()) {
-            String a = scan.nextLine();
-            String b = scan.nextLine();
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String a = sc.nextLine();
+            String b = sc.nextLine();
             int longest = 0;
             for (int i = 0; i < a.length(); i++) {
                 for (int k = i; k <= a.length(); k++) {

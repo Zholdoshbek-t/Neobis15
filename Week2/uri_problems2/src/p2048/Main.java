@@ -5,14 +5,14 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         int[][] table = new int[4][4];
         for (int i = 0; i < 4; i++) {
             for (int k = 0; k < 4; k++) {
-                table[i][k] = scan.nextInt();
+                table[i][k] = sc.nextInt();
             }
         }
-        int operation = scan.nextInt();
+        int operation = sc.nextInt();
         switch (operation) {
             case 0:
                 left(table);
@@ -130,9 +130,9 @@ public class Main {
                         newArr[i] = arr[i];
                     }
                 }
-            } else if (d == 2 || d == 3) { // right down
+            } else if (d == 2 || d == 3) {
                 for (int i = 0; i < 4 - arr.length; i++) {
-                    newArr[i] = 0; // 2048 64
+                    newArr[i] = 0;
                 }
                 int c = 0;
                 for (int i = 4 - arr.length; i < 4; i++) {

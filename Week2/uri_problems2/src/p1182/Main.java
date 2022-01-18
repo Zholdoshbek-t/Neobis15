@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int column = scan.nextInt();
-        scan.nextLine();
-        String operation = scan.nextLine();
+        Scanner sc = new Scanner(System.in);
+        int column = sc.nextInt();
+        sc.nextLine();
+        String operation = sc.nextLine();
         double[][] table = new double[12][12];
         for (int i = 0; i < 12; i++) {
             for (int k = 0; k < 12; k++) {
-                table[i][k] = scan.nextDouble();
+                table[i][k] = sc.nextDouble();
             }
         }
         double sum = 0;
