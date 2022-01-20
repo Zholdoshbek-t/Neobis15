@@ -5,9 +5,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        while (scan.hasNext()) {
-            String s = scan.nextLine();
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String s = sc.nextLine();
             if (s.length() < 6 || s.length() > 32) {
                 System.out.println("Senha invalida.");
             } else {

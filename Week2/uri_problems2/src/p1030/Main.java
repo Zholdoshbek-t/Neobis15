@@ -5,11 +5,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int tests = scan.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int tests = sc.nextInt();
         for (int k = 0; k < tests; k++) {
-            int n = scan.nextInt();
-            int m = scan.nextInt();
+            int n = sc.nextInt();
+            int m = sc.nextInt();
             ArrayList<Integer> circle = new ArrayList<>();
             for (int i = 1; i <= n; i++) {
                 circle.add(i);

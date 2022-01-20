@@ -5,11 +5,11 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int tests = scan.nextInt();
-        scan.nextLine();
+        Scanner sc = new Scanner(System.in);
+        int tests = sc.nextInt();
+        sc.nextLine();
         for (int k = 0; k < tests; k++) {
-            Scanner input = new Scanner(scan.nextLine());
+            Scanner input = new Scanner(sc.nextLine());
             String a = input.next();
             String b = input.next();
             if (a.length() <= b.length()) {
