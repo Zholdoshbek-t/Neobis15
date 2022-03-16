@@ -1,0 +1,71 @@
+I have created a Spring Boot Project.
+It has Product, ProductRepository, ProductController, and ResourceNotFoundException classes.
+User can use CRUD operations which are in ProductController class.
+In order to check operations, I used Postman.
+
+1. GET http://localhost:8080/api/v1/products
+   Get all products:
+    {
+        "productId": 1,
+        "name": "iPhone 13",
+        "price": 1300,
+        "amount": 700
+    },
+    {
+        "productId": 2,
+        "name": "Samsung S20",
+        "price": 800,
+        "amount": 670
+    }
+
+2. GET http://localhost:8080/api/v1/products/1
+   Get product with id=1:
+    {
+        "productId": 1,
+        "name": "iPhone 13",
+        "price": 1300,
+        "amount": 700
+    }
+
+3. POST http://localhost:8080/api/v1/products
+   Create product with given body:
+    {
+        "name": "Nokia 6300",
+        "price": 130,
+        "amount": 200
+    }
+
+4. PUT http://localhost:8080/api/v1/products/2
+   Update product with id=2;
+   Changed price(650) and amount(520):
+    {
+        "productId": 2,
+        "name": "Samsung S20",
+        "price": 650,
+        "amount": 520
+    }
+
+5. DELETE http://localhost:8080/api/v1/products/3
+   Delete product with id=3
+
+   Status: 204 No Content
+
+-------
+
+1. Added new Modules(Warehouse & Order)
+2. Created their repositories and controllers
+3. Added Flyway maven dependencies and created db.migration directories
+4. Added V1__Init_CreateTables.sql and V2__Init_Insert.sql files
+5. Launched flyway migration
+
+
+-------
+3/16/2022
+
+1. Added new Modules(User, Role, Status, Permission)
+2. Added new classes related to Spring Security(services, controllers)
+3. Now user has to login with its own username and password which is available in database
+4. User can register
+
+Overall the program has a lot of things to fix, but it has spring security features where by logining you are able to do only things which are permitted for your user type
+

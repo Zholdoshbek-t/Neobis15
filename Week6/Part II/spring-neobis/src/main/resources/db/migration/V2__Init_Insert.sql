@@ -1,0 +1,2 @@
+--INSERT INTO `online_shop`.`product` (`product_id`, `amount`, `name`, `price`, `warehouse_id`) VALUES (3, 300, 'Nokia 6303', 1000, 1);
+--INSERT INTO `online_shop`.`order` (`order_id`, `address`, `amount`, `city`, `country`, `order_date`, `price`, `product_id`) VALUES (2, 'Asanbay 40/58', 5, 'Bishkek', 'Kyrgyzstan', '2022-02-28', 6000, 1);

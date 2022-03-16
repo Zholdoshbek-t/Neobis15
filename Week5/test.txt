@@ -1,0 +1,4 @@
+1) Created new Maven project in IntelliJ Idea
+2) Added 'mysql connector' dependency in pom.xml
+3) Connected to local db
+4) Created connection and made simple statements(INSERT, UPDATE, DELETE)
