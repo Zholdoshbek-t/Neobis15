@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/api/v1/orders")
 public class OrderController {
 
+    final OrderRepository orderRepository;
+
     @Autowired
-    private OrderRepository orderRepository;
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('order:read')")

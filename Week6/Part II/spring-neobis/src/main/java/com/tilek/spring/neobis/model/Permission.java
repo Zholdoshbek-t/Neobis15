@@ -6,7 +6,9 @@ public enum Permission {
     ORDER_READ("order:read"),
     ORDER_WRITE("order:write"),
     WAREHOUSE_READ("warehouse:read"),
-    WAREHOUSE_WRITE("warehouse:write");
+    WAREHOUSE_WRITE("warehouse:write"),
+    USER_READ("user:read"),
+    USER_WRITE("user:write");
 
     private final String permission;
 

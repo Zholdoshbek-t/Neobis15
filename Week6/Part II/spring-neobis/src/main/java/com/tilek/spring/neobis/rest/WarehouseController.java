@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/api/v1/warehouses")
 public class WarehouseController {
 
+    final WarehouseRepository warehouseRepository;
+
     @Autowired
-    private WarehouseRepository warehouseRepository;
+    public WarehouseController(WarehouseRepository warehouseRepository) {
+        this.warehouseRepository = warehouseRepository;
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('warehouse:read')")

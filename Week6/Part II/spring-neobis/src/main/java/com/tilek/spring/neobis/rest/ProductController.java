@@ -16,8 +16,12 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
+    final ProductRepository productRepository;
+
     @Autowired
-    ProductRepository productRepository;
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @GetMapping
     @PreAuthorize("hasAuthority('product:read')")

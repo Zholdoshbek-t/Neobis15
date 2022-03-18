@@ -69,3 +69,8 @@ In order to check operations, I used Postman.
 
 Overall the program has a lot of things to fix, but it has spring security features where by logining you are able to do only things which are permitted for your user type
 
+-------
+3/18/2022
+
+1. Added different classes related to Json Web Tokens
+2. Tested and got positive results

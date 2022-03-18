@@ -2,7 +2,6 @@ package com.tilek.spring.neobis.security;
 
 import com.tilek.spring.neobis.model.User;
 import com.tilek.spring.neobis.repository.UserRepository;
-import com.tilek.spring.neobis.security.ApplicationUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
