@@ -1,10 +1,8 @@
 package com.tilek.spring.neobis.rest;
 
-import com.tilek.spring.neobis.exception.ResourceNotFoundException;
-import com.tilek.spring.neobis.model.Product;
-import com.tilek.spring.neobis.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import com.tilek.spring.neobis.entity.Product;
+import com.tilek.spring.neobis.model.ProductModel;
+import com.tilek.spring.neobis.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,56 +14,39 @@ import java.util.List;
 @RequestMapping("/api/v1/products")
 public class ProductController {
 
-    final ProductRepository productRepository;
+    private final ProductService productService;
 
-    @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('product:read')")
     List<Product> getAllProduct() {
-        return productRepository.findAll();
+        return productService.getAllProduct();
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasAuthority('product:read')")
     ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No product found with id: " + id));
-        return ResponseEntity.ok(product);
+        return productService.getProductById(id);
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('product:write')")
-    Product createProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    Product createProduct(@RequestBody ProductModel productModel) {
+        return productService.createProduct(productModel);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasAuthority('product:write')")
-    ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        Product updateProduct = productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No product found with id: " + id));
-
-        updateProduct.setName(productDetails.getName());
-        updateProduct.setAmount(productDetails.getAmount());
-        updateProduct.setPrice(productDetails.getPrice());
-
-        productRepository.save(updateProduct);
-
-        return ResponseEntity.ok(updateProduct);
+    ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductModel productDetails) {
+        return productService.updateProduct(id, productDetails);
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAuthority('product:write')")
     ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No product found with id L " + id));
-
-        productRepository.deleteById(id);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return productService.deleteProduct(id);
     }
 }

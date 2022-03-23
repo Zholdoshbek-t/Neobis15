@@ -1,9 +1,8 @@
 package com.tilek.spring.neobis.rest;
 
-import com.tilek.spring.neobis.exception.ResourceNotFoundException;
-import com.tilek.spring.neobis.model.Warehouse;
-import com.tilek.spring.neobis.repository.WarehouseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tilek.spring.neobis.entity.Warehouse;
+import com.tilek.spring.neobis.model.WarehouseModel;
+import com.tilek.spring.neobis.service.WarehouseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,55 +13,39 @@ import java.util.List;
 @RequestMapping("/api/v1/warehouses")
 public class WarehouseController {
 
-    final WarehouseRepository warehouseRepository;
+    private final WarehouseService warehouseService;
 
-    @Autowired
-    public WarehouseController(WarehouseRepository warehouseRepository) {
-        this.warehouseRepository = warehouseRepository;
+    public WarehouseController(WarehouseService warehouseService) {
+        this.warehouseService = warehouseService;
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('warehouse:read')")
     List<Warehouse> getAllWarehouses() {
-        return warehouseRepository.findAll();
+        return warehouseService.getAllWarehouses();
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasAuthority('warehouse:read')")
     ResponseEntity<Warehouse> getWarehouseById(@PathVariable Long id) {
-        Warehouse warehouse = warehouseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No warehouse found with id: " + id));
-        return ResponseEntity.ok(warehouse);
+        return warehouseService.getWarehouseById(id);
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('warehouse:write')")
-    Warehouse createWarehouse(Warehouse warehouse) {
-        return warehouseRepository.save(warehouse);
+    Warehouse createWarehouse(WarehouseModel warehouseModel) {
+        return warehouseService.createWarehouse(warehouseModel);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasAuthority('warehouse:write')")
-    ResponseEntity<Warehouse> updateWarehouse(@PathVariable Long id, @RequestBody Warehouse warehouseDetails) {
-        Warehouse updateWarehouse = warehouseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No warehouse found with id: " + id));
-        updateWarehouse.setCountry(warehouseDetails.getCountry());
-        updateWarehouse.setCity(warehouseDetails.getCity());
-        updateWarehouse.setAddress(warehouseDetails.getAddress());
-
-        warehouseRepository.save(updateWarehouse);
-
-        return ResponseEntity.ok(updateWarehouse);
+    ResponseEntity<Warehouse> updateWarehouse(@PathVariable Long id, @RequestBody WarehouseModel warehouseDetails) {
+        return warehouseService.updateWarehouse(id, warehouseDetails);
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAuthority('warehouse:write')")
     ResponseEntity<Warehouse> deleteWarehouse(@PathVariable Long id) {
-        Warehouse warehouse = warehouseRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No warehouse found with id: " + id));
-
-        warehouseRepository.deleteById(id);
-
-        return ResponseEntity.ok(warehouse);
+        return warehouseService.deleteWarehouse(id);
     }
 }

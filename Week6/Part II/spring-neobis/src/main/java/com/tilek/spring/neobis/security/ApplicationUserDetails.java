@@ -1,7 +1,7 @@
 package com.tilek.spring.neobis.security;
 
-import com.tilek.spring.neobis.model.Status;
-import com.tilek.spring.neobis.model.User;
+import com.tilek.spring.neobis.model.enums.Status;
+import com.tilek.spring.neobis.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

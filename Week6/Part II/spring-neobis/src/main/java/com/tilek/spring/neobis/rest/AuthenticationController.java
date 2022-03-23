@@ -1,6 +1,6 @@
 package com.tilek.spring.neobis.rest;
 
-import com.tilek.spring.neobis.model.User;
+import com.tilek.spring.neobis.entity.User;
 import com.tilek.spring.neobis.repository.UserRepository;
 import com.tilek.spring.neobis.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
@@ -22,13 +22,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-public class AuthenticationRestControllerV1 {
+public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
     private UserRepository userRepository;
     private JwtTokenProvider jwtTokenProvider;
 
-    public AuthenticationRestControllerV1(AuthenticationManager authenticationManager, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
+    public AuthenticationController(AuthenticationManager authenticationManager, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.jwtTokenProvider = jwtTokenProvider;

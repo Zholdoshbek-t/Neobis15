@@ -1,20 +1,27 @@
-package com.tilek.spring.neobis.model;
+package com.tilek.spring.neobis.entity;
 
+import com.tilek.spring.neobis.model.enums.Role;
+import com.tilek.spring.neobis.model.enums.Status;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    @Column(unique = true)
     private String email;
     @Column(name = "password")
     private String password;

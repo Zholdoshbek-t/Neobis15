@@ -1,9 +1,8 @@
 package com.tilek.spring.neobis.rest;
 
-import com.tilek.spring.neobis.exception.ResourceNotFoundException;
-import com.tilek.spring.neobis.model.User;
-import com.tilek.spring.neobis.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tilek.spring.neobis.entity.User;
+import com.tilek.spring.neobis.model.UserModel;
+import com.tilek.spring.neobis.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,52 +13,38 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    final UserRepository userRepository;
+    private final UserService userService;
 
-    @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('user:read')")
     List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasAuthority('user:read')")
     ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return userService.getUserById(id);
+    }
 
-        return ResponseEntity.ok(user);
+    @PostMapping
+    @PreAuthorize("hasAuthority('user:write')")
+    User createUser(@RequestBody UserModel userModel) {
+        return userService.createUser(userModel);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasAuthority('user:write')")
-    ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User userDetails) {
-        User updateUser = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        updateUser.setEmail(userDetails.getEmail());
-        updateUser.setFirstName(userDetails.getFirstName());
-        updateUser.setLastName(userDetails.getLastName());
-        updateUser.setPassword(userDetails.getPassword());
-        updateUser.setRole(userDetails.getRole());
-        updateUser.setStatus(userDetails.getStatus());
-
-        userRepository.save(updateUser);
-
-        return ResponseEntity.ok(updateUser);
+    ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UserModel userDetails) {
+        return userService.updateUser(id, userDetails);
     }
 
     @DeleteMapping("{id}")
     ResponseEntity<User> deleteUser(@PathVariable long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-
-        userRepository.deleteById(id);
-
-        return ResponseEntity.ok(user);
+        return userService.deleteUser(id);
     }
 }

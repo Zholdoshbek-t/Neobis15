@@ -1,9 +1,8 @@
 package com.tilek.spring.neobis.rest;
 
-import com.tilek.spring.neobis.exception.ResourceNotFoundException;
-import com.tilek.spring.neobis.model.Order;
-import com.tilek.spring.neobis.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tilek.spring.neobis.entity.Order;
+import com.tilek.spring.neobis.model.OrderModel;
+import com.tilek.spring.neobis.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,59 +13,39 @@ import java.util.List;
 @RequestMapping("/api/v1/orders")
 public class OrderController {
 
-    final OrderRepository orderRepository;
+    private final OrderService orderService;
 
-    @Autowired
-    public OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @GetMapping
     @PreAuthorize("hasAuthority('order:read')")
     List<Order> getAllOrder() {
-        return orderRepository.findAll();
+        return orderService.getAllOrder();
     }
 
     @GetMapping("{id}")
     @PreAuthorize("hasAuthority('order:read')")
     ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No order found with id: " + id));
-        return ResponseEntity.ok(order);
+        return orderService.getOrderById(id);
     }
 
     @PostMapping
     @PreAuthorize("hasAuthority('order:write')")
-    Order createOrder(Order order) {
-        return orderRepository.save(order);
+    Order createOrder(OrderModel orderModel) {
+        return orderService.createOrder(orderModel);
     }
 
     @PutMapping("{id}")
     @PreAuthorize("hasAuthority('order:write')")
-    ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order orderDetails) {
-        Order updateOrder = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No order found with id: " + id));
-        updateOrder.setAmount(orderDetails.getAmount());
-        updateOrder.setPrice(orderDetails.getPrice());
-        updateOrder.setCountry(orderDetails.getCountry());
-        updateOrder.setCity(orderDetails.getCity());
-        updateOrder.setAddress(orderDetails.getAddress());
-        updateOrder.setOrderDate(orderDetails.getOrderDate());
-        updateOrder.setProduct(orderDetails.getProduct());
-
-        orderRepository.save(updateOrder);
-
-        return ResponseEntity.ok(updateOrder);
+    ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody OrderModel orderDetails) {
+        return orderService.updateOrder(id, orderDetails);
     }
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAuthority('order:write')")
     ResponseEntity<Order> deleteOrder(@PathVariable Long id) {
-        Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No order found with id: " + id));
-
-        orderRepository.deleteById(id);
-
-        return ResponseEntity.ok(order);
+        return orderService.deleteOrder(id);
     }
 }

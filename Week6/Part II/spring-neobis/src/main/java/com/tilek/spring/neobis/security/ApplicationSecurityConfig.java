@@ -68,22 +68,3 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 }
-
-
-    // private final UserDetailsService userDetailsService;
-//
-//    @Autowired
-//    public ApplicationSecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
-
-
-//    @Bean
-//    protected DaoAuthenticationProvider daoAuthenticationProvider() {
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-//        return daoAuthenticationProvider;
-//    }
-
-// Dao Service SecurityConfig UserPermission UserRole PasswordConfig

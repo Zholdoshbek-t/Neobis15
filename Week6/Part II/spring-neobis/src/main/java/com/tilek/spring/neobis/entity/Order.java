@@ -1,33 +1,21 @@
-package com.tilek.spring.neobis.model;
+package com.tilek.spring.neobis.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(
-        name = "`order`"
-)
+@Table(name = "`order`")
 public class Order {
 
     @Id
-    @SequenceGenerator(
-            name = "order_sequence",
-            sequenceName = "order_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "order_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
     @Column(nullable = false)
     private int amount;

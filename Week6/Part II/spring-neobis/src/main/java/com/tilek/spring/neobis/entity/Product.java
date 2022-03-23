@@ -1,32 +1,20 @@
-package com.tilek.spring.neobis.model;
+package com.tilek.spring.neobis.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table(
-        name = "product"
-)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+@Table(name = "product")
 public class Product {
 
     @Id
-    @SequenceGenerator(
-            name = "product_sequence",
-            sequenceName = "product_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "product_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     @Column(name = "name", nullable = false)
     private String name;

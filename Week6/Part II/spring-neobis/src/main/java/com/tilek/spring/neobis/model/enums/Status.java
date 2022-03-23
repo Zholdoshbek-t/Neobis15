@@ -1,4 +1,4 @@
-package com.tilek.spring.neobis.model;
+package com.tilek.spring.neobis.model.enums;
 
 public enum Status {
     ACTIVE,

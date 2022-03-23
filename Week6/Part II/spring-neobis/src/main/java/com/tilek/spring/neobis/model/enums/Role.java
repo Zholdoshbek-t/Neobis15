@@ -1,4 +1,4 @@
-package com.tilek.spring.neobis.model;
+package com.tilek.spring.neobis.model.enums;
 
 import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.tilek.spring.neobis.model.Permission.*;
+import static com.tilek.spring.neobis.model.enums.Permission.*;
 public enum Role {
 
     DIRECTOR(Sets.newHashSet(WAREHOUSE_READ,WAREHOUSE_WRITE,PRODUCT_READ,PRODUCT_WRITE,
