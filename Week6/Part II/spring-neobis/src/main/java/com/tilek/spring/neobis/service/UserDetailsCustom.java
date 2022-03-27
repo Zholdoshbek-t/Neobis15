@@ -1,4 +1,4 @@
-package com.tilek.spring.neobis.security;
+package com.tilek.spring.neobis.service;
 
 import com.tilek.spring.neobis.model.enums.Status;
 import com.tilek.spring.neobis.entity.User;
@@ -11,15 +11,15 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-public class ApplicationUserDetails implements UserDetails {
+public class UserDetailsCustom implements UserDetails {
 
     private final String username;
     private final String password;
     private final List<SimpleGrantedAuthority> authorities;
     private final boolean isActive;
 
-    public ApplicationUserDetails(String username, String password,
-          List<SimpleGrantedAuthority> authorities, boolean isActive) {
+    public UserDetailsCustom(String username, String password,
+                             List<SimpleGrantedAuthority> authorities, boolean isActive) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;

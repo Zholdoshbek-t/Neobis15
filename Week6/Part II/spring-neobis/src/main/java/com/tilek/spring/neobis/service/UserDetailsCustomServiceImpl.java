@@ -1,4 +1,4 @@
-package com.tilek.spring.neobis.security;
+package com.tilek.spring.neobis.service;
 
 import com.tilek.spring.neobis.entity.User;
 import com.tilek.spring.neobis.repository.UserRepository;
@@ -9,12 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service("userDetailsServiceImpl")
-public class ApplicationUserDetailsService implements UserDetailsService {
+public class UserDetailsCustomServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public ApplicationUserDetailsService(UserRepository userRepository) {
+    public UserDetailsCustomServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -22,6 +22,6 @@ public class ApplicationUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return ApplicationUserDetails.getUserDetails(user);
+        return UserDetailsCustom.getUserDetails(user);
     }
 }

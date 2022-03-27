@@ -1,8 +1,9 @@
 package com.tilek.spring.neobis.rest;
 
 import com.tilek.spring.neobis.entity.User;
+import com.tilek.spring.neobis.model.AuthenticationRequestModel;
 import com.tilek.spring.neobis.repository.UserRepository;
-import com.tilek.spring.neobis.security.JwtTokenProvider;
+import com.tilek.spring.neobis.config.jwt.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,7 +37,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequestDTO request) {
+    public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequestModel request) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
             User user = userRepository.findByEmail(request.getEmail())

@@ -1,9 +1,9 @@
-package com.tilek.spring.neobis.rest;
+package com.tilek.spring.neobis.model;
 
 import lombok.Data;
 
 @Data
-public class AuthenticationRequestDTO {
+public class AuthenticationRequestModel {
     private String email;
     private String password;
 }

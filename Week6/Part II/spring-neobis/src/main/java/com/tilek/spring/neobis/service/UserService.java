@@ -2,7 +2,6 @@ package com.tilek.spring.neobis.service;
 
 import com.tilek.spring.neobis.entity.User;
 import com.tilek.spring.neobis.model.UserModel;
-import com.tilek.spring.neobis.web.dto.UserRegistrationDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

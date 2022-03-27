@@ -1,4 +1,4 @@
-package com.tilek.spring.neobis.security;
+package com.tilek.spring.neobis.config.jwt;
 
 import com.tilek.spring.neobis.exception.JwtAuthenticationException;
 import org.springframework.security.core.Authentication;
