@@ -35,6 +35,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public List<User> getAllUsersByFirstName(String firstName) {
+        return userRepository.findUserByFirstName(firstName);
+    }
+
+    @Override
+    public ResponseEntity<User> getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User was not found"));
+
+        return ResponseEntity.ok(user);
+    }
+
+    @Override
     public ResponseEntity<User> getUserById(long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User was not found"));

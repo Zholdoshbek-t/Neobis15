@@ -25,11 +25,19 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("usersFirstName/{firstName}")
+    @PreAuthorize("hasAuthority('user:read')")
+    List<User> getAllUsersByFirstName(@PathVariable String firstName) { return userService.getAllUsersByFirstName(firstName); }
+
     @GetMapping("{id}")
     @PreAuthorize("hasAuthority('user:read')")
     ResponseEntity<User> getUserById(@PathVariable long id) {
         return userService.getUserById(id);
     }
+
+    @GetMapping("/userEmail/{email}")
+    @PreAuthorize("hasAuthority('user:read')")
+    ResponseEntity<User> getUserByEmail(@PathVariable String email) { return userService.getUserByEmail(email); }
 
     @PostMapping
     @PreAuthorize("hasAuthority('user:write')")

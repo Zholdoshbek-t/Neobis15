@@ -9,6 +9,7 @@ import java.util.List;
 public interface OrderService {
 
     List<Order> getAllOrder();
+    List<Order> getOrdersByCity(String city);
     ResponseEntity<Order> getOrderById(Long id);
     Order createOrder(OrderModel orderModel);
     ResponseEntity<Order> updateOrder(Long id, OrderModel orderDetails);

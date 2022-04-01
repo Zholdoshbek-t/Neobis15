@@ -25,6 +25,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Order> getOrdersByCity(String city) {
+        return orderRepository.findAllByCity(city);
+    }
+
+    @Override
     public ResponseEntity<Order> getOrderById(Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order was not found"));
