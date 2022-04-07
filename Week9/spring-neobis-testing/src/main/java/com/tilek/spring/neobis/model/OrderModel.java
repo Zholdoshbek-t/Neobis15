@@ -17,7 +17,7 @@ public class OrderModel {
     Double price;
     String country;
     String city;
-    String orderAddress;
+    String address;
     Date orderDate;
     Product product;
 }

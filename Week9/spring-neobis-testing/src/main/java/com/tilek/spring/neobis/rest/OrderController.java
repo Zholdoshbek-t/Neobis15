@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @PostMapping
-    Order createOrder(OrderModel orderModel) {
+    Order createOrder(@RequestBody OrderModel orderModel) {
         return orderService.createOrder(orderModel);
     }
 

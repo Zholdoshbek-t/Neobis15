@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,11 +18,10 @@ public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long warehouseId;
-    @Column(nullable = false, unique = true)
+    @Column(name = "address", nullable = false, unique = true)
     String address;
-    @Column(nullable = false)
+    @Column(name = "city", nullable = false)
     String city;
-    @Column(nullable = false)
+    @Column(name = "country", nullable = false)
     String country;
-
 }

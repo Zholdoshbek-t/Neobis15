@@ -73,7 +73,7 @@ public class OrderServiceImpl implements OrderService{
         order.setPrice(orderModel.getPrice());
         order.setCountry(orderModel.getCountry());
         order.setCity(orderModel.getCity());
-        order.setOrderAddress(orderModel.getOrderAddress());
+        order.setAddress(orderModel.getAddress());
         order.setOrderDate(orderModel.getOrderDate());
         order.setProductId(orderModel.getProduct());
     }

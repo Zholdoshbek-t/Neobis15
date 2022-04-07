@@ -24,10 +24,11 @@ public class Product {
     @Column(name = "amount", nullable = false)
     private int amount;
 
-    @ManyToOne(cascade = CascadeType.MERGE,optional = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
         name = "warehouse_id",
-        referencedColumnName = "warehouseId"
+        referencedColumnName = "warehouseId",
+        foreignKey = @ForeignKey(name = "warehouse_id_fk")
     )
     private Warehouse warehouse;
 

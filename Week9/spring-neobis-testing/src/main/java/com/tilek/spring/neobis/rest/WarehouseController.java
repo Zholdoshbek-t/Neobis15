@@ -30,7 +30,7 @@ public class WarehouseController {
     }
 
     @PostMapping
-    Warehouse createWarehouse(WarehouseModel warehouseModel) {
+    Warehouse createWarehouse(@RequestBody WarehouseModel warehouseModel) {
         return warehouseService.createWarehouse(warehouseModel);
     }
 

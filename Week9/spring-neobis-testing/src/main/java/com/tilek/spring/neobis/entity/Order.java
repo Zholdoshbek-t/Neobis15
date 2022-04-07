@@ -26,10 +26,10 @@ public class Order {
     @Column(name = "city", nullable = false)
     String city;
     @Column(name = "address", nullable = false)
-    String orderAddress;
+    String address;
     @Temporal(TemporalType.DATE)
     Date orderDate;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     @JoinColumn(
             name = "product_id",
             referencedColumnName = "productId",

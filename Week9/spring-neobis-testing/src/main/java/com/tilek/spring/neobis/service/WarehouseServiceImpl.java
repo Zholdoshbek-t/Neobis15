@@ -63,8 +63,8 @@ public class WarehouseServiceImpl implements WarehouseService{
     }
 
     private void mergeWarehouses(Warehouse warehouse, WarehouseModel warehouseModel) {
-        warehouse.setCountry(warehouseModel.getCountry());
-        warehouse.setCity(warehouseModel.getCity());
         warehouse.setAddress(warehouseModel.getAddress());
+        warehouse.setCity(warehouseModel.getCity());
+        warehouse.setCountry(warehouseModel.getCountry());
     }
 }
