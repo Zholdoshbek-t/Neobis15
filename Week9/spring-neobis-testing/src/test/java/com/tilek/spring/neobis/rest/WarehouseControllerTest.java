@@ -37,7 +37,7 @@ class WarehouseControllerTest {
     @Order(5)
     void canGetAllWarehouses() throws Exception {
         mockMvc.perform(
-                get("http://localhost:8080/api/v1/warehouses"))
+                        get("http://localhost:8080/api/v1/warehouses"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -46,7 +46,7 @@ class WarehouseControllerTest {
     @Order(4)
     void canGetWarehouseById() throws Exception {
         mockMvc.perform(
-                get("http://localhost:8080/api/v1/warehouses/{id}", 2L))
+                        get("http://localhost:8080/api/v1/warehouses/{id}", 2L))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -63,9 +63,9 @@ class WarehouseControllerTest {
         String jsonRequest = mapper.writeValueAsString(warehouse);
 
         mockMvc.perform(
-                post("http://localhost:8080/api/v1/warehouses")
-                        .content(jsonRequest)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        post("http://localhost:8080/api/v1/warehouses")
+                                .content(jsonRequest)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -83,9 +83,9 @@ class WarehouseControllerTest {
         String jsonRequest = mapper.writeValueAsString(warehouseModel);
 
         mockMvc.perform(
-                put("http://localhost:8080/api/v1/warehouses/{id}", warehouse.getWarehouseId())
-                        .content(jsonRequest)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        put("http://localhost:8080/api/v1/warehouses/{id}", warehouse.getWarehouseId())
+                                .content(jsonRequest)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -96,7 +96,7 @@ class WarehouseControllerTest {
         Warehouse warehouse = warehouseRepository.findByAddress("Kok Jar 21").orElseThrow();
 
         mockMvc.perform(
-                delete("http://localhost:8080/api/v1/warehouses/{id}", warehouse.getWarehouseId()))
+                        delete("http://localhost:8080/api/v1/warehouses/{id}", warehouse.getWarehouseId()))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

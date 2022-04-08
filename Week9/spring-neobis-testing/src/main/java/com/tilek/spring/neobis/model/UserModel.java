@@ -13,10 +13,10 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class UserModel {
 
-    private Long userId;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private Role role;
-    private Status status;
+    String email;
+    String password;
+    String firstName;
+    String lastName;
+    Role role;
+    Status status;
 }

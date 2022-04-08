@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> getAllUsersByFirstName(String firstName) {
-        return userRepository.findUserByFirstName(firstName);
+        return userRepository.findUsersByFirstName(firstName);
     }
 
     @Override
@@ -85,6 +85,7 @@ public class UserServiceImpl implements UserService{
         updateUser.setFirstName(userDetails.getFirstName());
         updateUser.setLastName(userDetails.getLastName());
         updateUser.setEmail(userDetails.getEmail());
+        updateUser.setPassword(passwordEncoder().encode(userDetails.getPassword()));
         updateUser.setRole(userDetails.getRole());
         updateUser.setStatus(userDetails.getStatus());
     }

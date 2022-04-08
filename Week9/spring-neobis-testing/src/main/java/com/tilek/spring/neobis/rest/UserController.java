@@ -4,7 +4,6 @@ import com.tilek.spring.neobis.entity.User;
 import com.tilek.spring.neobis.model.UserModel;
 import com.tilek.spring.neobis.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("usersFirstName/{firstName}")
+    @GetMapping("/usersFirstName/{firstName}")
     List<User> getAllUsersByFirstName(@PathVariable String firstName) { return userService.getAllUsersByFirstName(firstName); }
 
     @GetMapping("{id}")

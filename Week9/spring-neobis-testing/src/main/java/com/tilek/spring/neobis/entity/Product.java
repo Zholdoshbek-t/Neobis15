@@ -16,13 +16,13 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    Long productId;
     @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    String name;
     @Column(name = "price", nullable = false)
-    private int price;
+    int price;
     @Column(name = "amount", nullable = false)
-    private int amount;
+    int amount;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(

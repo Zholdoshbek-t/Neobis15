@@ -44,7 +44,7 @@ class OrderControllerTest {
     @Autowired
     private ObjectMapper mapper;
 
-    public OrderControllerTest(){
+    public OrderControllerTest() {
         mapper = new ObjectMapper();
     }
 
@@ -102,9 +102,9 @@ class OrderControllerTest {
         String jsonRequest = mapper.writeValueAsString(orderModel);
 
         mockMvc.perform(
-                put("http://localhost:8080/api/v1/orders/{id}", 12L)
-                        .content(jsonRequest)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        put("http://localhost:8080/api/v1/orders/{id}", 12L)
+                                .content(jsonRequest)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -113,7 +113,7 @@ class OrderControllerTest {
     void deleteOrder() throws Exception {
 
         mockMvc.perform(
-                delete("http://localhost:8080/api/v1/orders/{id}", 12L))
+                        delete("http://localhost:8080/api/v1/orders/{id}", 12L))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

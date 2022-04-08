@@ -12,9 +12,9 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class ProductModel {
 
-    private Long productId;
-    private String name;
-    private int price;
-    private int amount;
-    private Warehouse warehouse;
+    Long productId;
+    String name;
+    int price;
+    int amount;
+    Warehouse warehouse;
 }

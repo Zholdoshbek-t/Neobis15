@@ -4,7 +4,6 @@ import com.tilek.spring.neobis.entity.Warehouse;
 import com.tilek.spring.neobis.model.WarehouseModel;
 import com.tilek.spring.neobis.service.WarehouseService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

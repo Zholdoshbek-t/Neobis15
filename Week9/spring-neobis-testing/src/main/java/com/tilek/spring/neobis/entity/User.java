@@ -20,20 +20,20 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    Long userId;
     @Column(unique = true)
-    private String email;
+    String email;
     @Column(name = "password")
-    private String password;
+    String password;
     @Column(name = "first_name")
-    private String firstName;
+    String firstName;
     @Column(name = "last_name")
-    private String lastName;
+    String lastName;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private Role role;
+    Role role;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
-    private Status status;
+    Status status;
 
 }

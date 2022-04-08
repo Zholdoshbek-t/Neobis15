@@ -36,7 +36,7 @@ class ProductControllerTest {
     @Test
     void canGetAllProduct() throws Exception {
         mockMvc.perform(
-                get("http://localhost:8080/api/v1/products"))
+                        get("http://localhost:8080/api/v1/products"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -60,9 +60,9 @@ class ProductControllerTest {
                 .build();
         String jsonRequest = mapper.writeValueAsString(model);
         mockMvc.perform(
-                post("http://localhost:8080/api/v1/products")
-                        .content(jsonRequest)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        post("http://localhost:8080/api/v1/products")
+                                .content(jsonRequest)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -79,9 +79,9 @@ class ProductControllerTest {
         String jsonRequest = mapper.writeValueAsString(productModel);
         Product product = productRepository.findByName("Samsung Galaxy S6").orElseThrow();
         mockMvc.perform(
-                put("http://localhost:8080/api/v1/products/{id}", product.getProductId())
-                        .content(jsonRequest)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        put("http://localhost:8080/api/v1/products/{id}", product.getProductId())
+                                .content(jsonRequest)
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -90,7 +90,7 @@ class ProductControllerTest {
     void canDeleteProduct() throws Exception {
         Product product = productRepository.findByName("Iphone XS").orElseThrow();
         mockMvc.perform(
-                delete("http://localhost:8080/api/v1/products/{id}", product.getProductId()))
+                        delete("http://localhost:8080/api/v1/products/{id}", product.getProductId()))
                 .andDo(print())
                 .andExpect(status().isOk());
     }

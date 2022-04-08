@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 public class WarehouseModel {
 
-    private String address;
-    private String city;
-    private String country;
+    String address;
+    String city;
+    String country;
 }
